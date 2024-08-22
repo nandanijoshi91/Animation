@@ -1,0 +1,16 @@
+.p{
+    font-size: 7 rem;
+    text-align: center;
+    color:white;
+
+    &:nth-of-type(5)
+    {
+        color:yellow;
+    }
+
+}
+ .body
+ {
+    body-font:"Montserrat Alternates", sans-serif;
+ }
+ 
