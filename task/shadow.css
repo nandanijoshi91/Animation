@@ -1,34 +1,40 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Signika', sans-serif;
-    height: 100vh;
-    background: linear-gradient(45deg, white 45%, black 45%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  #demo {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-  }
-  
-  .ribbon {
-    position: absolute;
-    width: 800px;
-    height: 100px;
-    background-color: #d11191;
-    opacity: 0;
-    transform: rotate(-45deg);
-  }
-  
-  /* Position ribbons vertically within the black section */
-  .ribbon-1 { top: 10%; left: 50%; transform: translateX(-10%) rotate(-45deg); }
-  .ribbon-2 { top: 30%; left: 50%; transform: translateX(-5%) rotate(-45deg); }
-  .ribbon-3 { top: 50%; left: 50%; transform: translateX(-10%) rotate(-45deg); }
-  .ribbon-4 { top: 70%; left: 50%; transform: translateX(-10%) rotate(-45deg); }
-  .ribbon-5 { top: 90%; left: 50%; transform: translateX(-10%) rotate(-45deg); }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Signika', sans-serif;
+      height: 100vh;
+      background: linear-gradient(50deg, white 60%, black 40%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    #demo {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .ribbon {
+      position: absolute;
+      width: 1000px;
+      height: 185px;
+      transform: rotate(50deg);
+      opacity: 0.8;
+      border-radius: 5px;
+      box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.6);
+      background: radial-gradient(circle, #ff0037 0%, pink 50%, black 100%);
+      transition: background 5s ease;
+    }
+
+    .ribbon-1 { top: 0%; left: 60%; }
+    .ribbon-2 { top: 20%; left: 60%; }
+    .ribbon-3 { top: 40%; left: 60%; }
+    .ribbon-4 { top: 60%; left: 60%; }
+    .ribbon-5 { top: 80%; left: 60%; }
+    .ribbon-6 { top: 100%; left: 60%; }
   
