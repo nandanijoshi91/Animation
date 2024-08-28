@@ -24,10 +24,13 @@ body {
   width: 1000px;
   height: 100px;
   transform: rotate(45deg);
-  background: linear-gradient(to bottom right, pink 0%, pink 100%);
-  transition: background 1s linear;
+  opacity: 0.8;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.6);
+  background: linear-gradient(to right,black 10%, pink 0%, rgb(246, 77, 181) 0%);
+  background-size: 200% 100%;
+  background-position: left;
 }
-
 .ribbon-1 { top: 10%; left: 70%; }
 .ribbon-2 { top: 8%; left: 60%; }
 .ribbon-3 { top: 28%; left: 60%; }
