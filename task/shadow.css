@@ -1,40 +1,39 @@
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Signika', sans-serif;
-      height: 100vh;
-      background: linear-gradient(50deg, white 60%, black 40%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Signika', sans-serif;
+  height: 100vh;
+  background: linear-gradient(50deg, white 60%, black 40%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
 
-    #demo {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-    }
+#demo {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 
-    .ribbon {
-      position: absolute;
-      width: 1000px;
-      height: 185px;
-      transform: rotate(50deg);
-      opacity: 0.8;
-      border-radius: 5px;
-      box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.6);
-      background: radial-gradient(circle, #ff0037 0%, pink 50%, black 100%);
-      transition: background 5s ease;
-    }
+.ribbon {
+  position: absolute;
+  width: 1000px;
+  height: 185px;
+  transform: rotate(50deg);
+  opacity: 0.8;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px rgba(255, 0, 255, 0.6);
+  background: radial-gradient(circle, #ff0037 0%, pink 50%, black 100%);
+  transition: background 5s ease;
+}
 
-    .ribbon-1 { top: 0%; left: 60%; }
-    .ribbon-2 { top: 20%; left: 60%; }
-    .ribbon-3 { top: 40%; left: 60%; }
-    .ribbon-4 { top: 60%; left: 60%; }
-    .ribbon-5 { top: 80%; left: 60%; }
-    .ribbon-6 { top: 100%; left: 60%; }
-  
+.ribbon-1 { top: 0%; left: 60%; }
+.ribbon-2 { top: 20%; left: 60%; }
+.ribbon-3 { top: 40%; left: 60%; }
+.ribbon-4 { top: 60%; left: 60%; }
+.ribbon-5 { top: 80%; left: 60%; }
+.ribbon-6 { top: 100%; left: 60%; }
