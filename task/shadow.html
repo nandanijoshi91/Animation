@@ -1,25 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GSAP Pink Ribbon Animation</title>
-  <link href="https://fonts.googleapis.com/css?family=Signika" rel="stylesheet">
-  <link rel="stylesheet" href="shadow.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
-</head>
-<body>
-  <div id="demo">
-    <div class="ribbon ribbon-1"></div>
-    <div class="ribbon ribbon-2"></div>
-    <div class="ribbon ribbon-3"></div>
-    <div class="ribbon ribbon-4"></div>
-    <div class="ribbon ribbon-5"></div>
-    <div class="ribbon ribbon-6"></div>
-  </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>newboxAnimation</title>
+    
+    <style>
+      body 
+      {
+        background: black;
+      }
 
-  <script src="./shadow.js"></script>
+      .box {
+        width: 70px;
+        height: 800px;
+        background: radial-gradient(
+          circle at center,
+          #ff00cc 0%,
+          #ff002b 50%,
+          black 100%
+        );
+       
+        transform: rotate(-45deg);
+        transition: background 0.5s ease;
 
-</body>
+        margin: 14px;
+      }
+
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-wrap: nowrap;
+        display: flex;
+        top: 0px;
+        position: absolute;
+        flex-wrap: nowrap;
+        right: -117px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+      <div class="box"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () =>
+      {
+        const boxes = document.querySelectorAll(".box"); 
+
+        document.addEventListener("mousemove", (event) => 
+        {
+         
+          boxes.forEach((box) => {
+            const boxRect = box.getBoundingClientRect(); 
+            const boxWidth = boxRect.width;
+            const boxHeight = boxRect.height;
+
+            
+            const xRelative = event.clientX - (boxRect.left + boxWidth / 2);
+            const yRelative = event.clientY - (boxRect.top + boxHeight / 2);
+
+            
+            const xNormalized = xRelative / (boxWidth / 2);
+            const yNormalized = yRelative / (boxHeight / 2);
+
+           
+            const gradientPositionX = xNormalized * 50 + 50; 
+            const gradientPositionY = yNormalized * 50 + 50; 
+
+            const newBackground = `radial-gradient(circle at ${gradientPositionX}% ${gradientPositionY}%, #ff00cc 0%, #ff002b 50%, black 100%)`;
+
+            
+            gsap.to(box, 
+            {
+              duration: 5, 
+              background: newBackground,
+              ease: "power1.out", 
+            });
+          });
+        });
+      });
+    </script>
+  </body>
 </html>
