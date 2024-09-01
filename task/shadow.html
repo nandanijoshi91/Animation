@@ -3,90 +3,97 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>newboxAnimation</title>
-    
+    <title>Ribbon Gradient Animation</title>
+
     <style>
-      body 
-      {
-        background: black;
+      body {
+        background: linear-gradient(45deg, white 60%, black 40%);
+        margin: 0;
+        overflow: hidden;
       }
 
       .box {
-        width: 70px;
-        height: 800px;
-        background: radial-gradient(
-          circle at center,
-          #ff00cc 0%,
-          #ff002b 50%,
-          black 100%
-        );
-       
+        width: 90px;
+        height: 920px;
         transform: rotate(-45deg);
-        transition: background 0.5s ease;
-
-        margin: 14px;
+        transition: background 1s ease;
+        margin: 16.5px;
       }
 
+      .background {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
 
       .center {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
         align-items: center;
         height: 100vh;
         flex-wrap: nowrap;
-        display: flex;
-        top: 0px;
         position: absolute;
-        flex-wrap: nowrap;
-        right: -117px;
+        top: 0;
+        right: -254px;
       }
     </style>
   </head>
 
   <body>
-    <div class="center">
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
-      <div class="box"></div>
+    <div class="background">
+      <div class="center">
+        <div class="box" data-stop1="5%" data-stop2="15%" data-stop3="50%"></div>
+        <div class="box" data-stop1="10%" data-stop2="30%" data-stop3="60%"></div>
+        <div class="box" data-stop1="20%" data-stop2="50%" data-stop3="75%"></div>
+        <div class="box" data-stop1="20%" data-stop2="50%" data-stop3="75%"></div>
+        <div class="box" data-stop1="10%" data-stop2="30%" data-stop3="60%"></div>
+        <div class="box" data-stop1="5%" data-stop2="15%" data-stop3="50%"></div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () =>
-      {
-        const boxes = document.querySelectorAll(".box"); 
+      document.addEventListener("DOMContentLoaded", () => {
+        const boxes = document.querySelectorAll(".box");
 
-        document.addEventListener("mousemove", (event) => 
-        {
-         
-          boxes.forEach((box) => {
-            const boxRect = box.getBoundingClientRect(); 
-            const boxWidth = boxRect.width;
-            const boxHeight = boxRect.height;
+        // Left-to-right animation with slower speed
+        gsap.from(boxes, {
+          duration: 6,
+          x: '-100%',
+          //stagger: 0.2,
+          ease: "power2.out",
+        });
 
-            
-            const xRelative = event.clientX - (boxRect.left + boxWidth / 2);
-            const yRelative = event.clientY - (boxRect.top + boxHeight / 2);
+        boxes.forEach((box) => {
+          box.addEventListener("mousemove", (event) => {
+            const boxRect = box.getBoundingClientRect();
+            const xRelative = event.clientX - boxRect.left;
+            const gradientPositionX = (xRelative / boxRect.width) * 100;
 
-            
-            const xNormalized = xRelative / (boxWidth / 2);
-            const yNormalized = yRelative / (boxHeight / 2);
+            const stop1 = box.getAttribute("data-stop1");
+            const stop2 = box.getAttribute("data-stop2");
+            const stop3 = box.getAttribute("data-stop3");
 
-           
-            const gradientPositionX = xNormalized * 50 + 50; 
-            const gradientPositionY = yNormalized * 50 + 50; 
+            const newBackground = `radial-gradient(circle 420px at ${gradientPositionX}% 50%, #f864da ${stop1}, #ff009d ${stop2}, black ${stop3})`;
 
-            const newBackground = `radial-gradient(circle at ${gradientPositionX}% ${gradientPositionY}%, #ff00cc 0%, #ff002b 50%, black 100%)`;
-
-            
-            gsap.to(box, 
-            {
-              duration: 5, 
+            gsap.to(box, {
+              duration: 1,
               background: newBackground,
-              ease: "power1.out", 
+              ease: "power1.out",
+            });
+          });
+
+          box.addEventListener("mouseleave", () => {
+            const stop1 = box.getAttribute("data-stop1");
+            const stop2 = box.getAttribute("data-stop2");
+            const stop3 = box.getAttribute("data-stop3");
+
+            const defaultBackground = `radial-gradient(circle at center, #f864da ${stop1}, #ff009d ${stop2}, black ${stop3})`;
+
+            gsap.to(box, {
+              duration: 6,
+              background: defaultBackground,
+              ease: "power1.out",
             });
           });
         });
